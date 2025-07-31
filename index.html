@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DN Scientific Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      text-align: center;
+      padding: 30px;
+    }
+
+    img {
+      width: 100px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 26px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    #display {
+      width: 90%;
+      max-width: 340px;
+      padding: 15px;
+      font-size: 22px;
+      border: 3px solid #ffc107;
+      border-radius: 12px;
+      background-color: #fffbea;
+      box-shadow: 0 0 12px rgba(255, 193, 7, 0.3);
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 80px);
+      gap: 12px;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    button {
+      padding: 16px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+      transition: 0.2s ease;
+    }
+
+    .number { background-color: #d0f0fd; }
+    .number:hover { background-color: #a8def6; }
+
+    .operator { background-color: #ffe0f0; }
+    .operator:hover { background-color: #ffcfe6; }
+
+    .function { background-color: #d4fdd9; }
+    .function:hover { background-color: #b0f2bd; }
+
+    .equal { background-color: #ffdca8; }
+    .equal:hover { background-color: #ffcc80; }
+
+    .clear { background-color: #f8d7da; }
+    .clear:hover { background-color: #f5c6cb; }
+
+    @media (max-width: 480px) {
+      .buttons {
+        grid-template-columns: repeat(3, 80px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🌐 Logo from Canva -->
+  <img src="dnlogo.png" alt="DN Logo" />
+
+  <h1>DN Scientific Calculator</h1>
+
+  <!-- 📟 Display Screen -->
+  <input type="text" id="display" readonly />
+
+  <!-- 🔢 All Buttons -->
+  <div class="buttons">
+    <!-- Number & Operator Row -->
+    <button class="number" onclick="append('7')">7</button>
+    <button class="number" onclick="append('8')">8</button>
+    <button class="number" onclick="append('9')">9</button>
+    <button class="operator" onclick="append('+')">+</button>
+
+    <button class="number" onclick="append('4')">4</button>
+    <button class="number" onclick="append('5')">5</button>
+    <button class="number" onclick="append('6')">6</button>
+    <button class="operator" onclick="append('-')">−</button>
+
+    <button class="number" onclick="append('1')">1</button>
+    <button class="number" onclick="append('2')">2</button>
+    <button class="number" onclick="append('3')">3</button>
+    <button class="operator" onclick="append('*')">×</button>
+
+    <button class="number" onclick="append('0')">0</button>
+    <button class="operator" onclick="append('.')">.</button>
+    <button class="clear" onclick="clearDisplay()">C</button>
+    <button class="operator" onclick="append('/')">÷</button>
+
+    <!-- 🔬 Scientific Functions -->
+    <button class="function" onclick="append('Math.sqrt(')">√</button>
+    <button class="function" onclick="append('Math.pow(')">xʸ</button>
+    <button class="function" onclick="append('Math.sin(')">sin</button>
+    <button class="function" onclick="append('Math.cos(')">cos</button>
+    <button class="function" onclick="append('Math.tan(')">tan</button>
+    <button class="function" onclick="append('Math.log(')">log</button>
+    <button class="function" onclick="append('Math.cbrt(')">∛</button>
+    <button class="equal" onclick="calculate()">=</button>
+  </div>
+
+  <script>
+    function append(value) {
+      document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+
+    function calculate() {
+      try {
+        const result = eval(document.getElementById('display').value);
+        document.getElementById('display').value = result;
+      } catch (e) {
+        alert('Error! Please enter a valid expression.');
+      }
+    }
+  </script>
+</body>
+</html>
